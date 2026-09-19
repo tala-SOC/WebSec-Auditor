@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Scan Results | WebSec Auditor</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="container nav-content">
+
+            <a href="/" class="logo">
+                <span class="logo-icon">◈</span>
+                WebSec <span>Auditor</span>
+            </a>
+
+            <nav class="nav-links">
+                <a href="/">New Scan</a>
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= RESULTS ================= -->
+
+    <main class="results-page">
+
+        <section class="results-container">
+
+            <div class="results-header">
+
+                <span class="section-label">
+                    SECURITY AUDIT REPORT
+                </span>
+
+                <h1>
+                    Website <span>Security Results</span>
+                </h1>
+
+                <p id="scannedUrl">
+                    Loading scan information...
+                </p>
+
+            </div>
+
+
+            <!-- ================= SCORE ================= -->
+
+            <div class="results-summary">
+
+                <div class="result-score-card">
+
+                    <div class="result-score-circle">
+                        <span id="securityScore">--</span>
+                        <small>/100</small>
+                    </div>
+
+                    <div>
+                        <span class="result-label">
+                            SECURITY SCORE
+                        </span>
+
+                        <h2 id="scoreStatus">
+                            Analyzing...
+                        </h2>
+
+                        <p>
+                            Based on the security checks performed.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="result-stats">
+
+                    <div class="stat">
+                        <span id="passedCount">0</span>
+                        <small>Passed</small>
+                    </div>
+
+                    <div class="stat">
+                        <span id="issueCount">0</span>
+                        <small>Issues</small>
+                    </div>
+
+                    <div class="stat">
+                        <span id="highCount">0</span>
+                        <small>High</small>
+                    </div>
+
+                    <div class="stat">
+                        <span id="mediumCount">0</span>
+                        <small>Medium</small>
+                    </div>
+
+                    <div class="stat">
+                        <span id="lowCount">0</span>
+                        <small>Low</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= FINDINGS ================= -->
+
+            <div class="findings-section">
+
+                <div class="findings-heading">
+
+                    <div>
+                        <span class="section-label">
+                            FINDINGS
+                        </span>
+
+                        <h2>
+                            Security Checks
+                        </h2>
+                    </div>
+
+                </div>
+
+
+                <div id="findingsList" class="findings-list">
+
+                    <!-- Findings will be inserted here -->
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= ACTION ================= -->
+
+            <div class="results-actions">
+
+                <button
+                    class="cta-button"
+                    onclick="window.location.href='/'"
+                >
+                    ← Scan Another Website
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="container footer-content">
+
+            <div class="footer-logo">
+                WebSec Auditor
+            </div>
+
+            <p>
+                Automated Web Security Auditing
+            </p>
+
+            <span>
+                © 2026 WebSec Auditor
+            </span>
+
+        </div>
+
+    </footer>
+
+
+    <script>
+
+        /* =====================================================
+           LOAD SCAN RESULT
+        ===================================================== */
+
+        const storedResult =
+            localStorage.getItem("websecScanResult");
+
+
+        if (!storedResult) {
+
+            document.getElementById("scannedUrl").textContent =
+                "No scan result was found.";
+
+        } else {
+
+            const data = JSON.parse(storedResult);
+
+            const findings = data.findings || [];
+
+
+            /* =================================================
+               URL
+            ================================================= */
+
+            document.getElementById("scannedUrl").textContent =
+                data.url;
+
+
+            /* =================================================
+               USE BACKEND SCORE
+            ================================================= */
+
+            const score = data.score ?? 0;
+
+            document.getElementById("securityScore")
+                .textContent = score;
+
+
+            /* =================================================
+               COUNTS
+            ================================================= */
+
+            let passed = 0;
+            let issues = 0;
+            let high = 0;
+            let medium = 0;
+            let low = 0;
+
+
+            findings.forEach(finding => {
+
+                if (finding.status === "PASS") {
+                    passed++;
+                }
+
+                if (
+                    finding.status === "MISSING" ||
+                    finding.status === "ERROR"
+                ) {
+                    issues++;
+                }
+
+                if (
+                    finding.severity === "HIGH" &&
+                    finding.status !== "PASS"
+                ) {
+                    high++;
+                }
+
+                if (
+                    finding.severity === "MEDIUM" &&
+                    finding.status !== "PASS"
+                ) {
+                    medium++;
+                }
+
+                if (
+                    finding.severity === "LOW" &&
+                    finding.status !== "PASS"
+                ) {
+                    low++;
+                }
+
+            });
+
+
+            document.getElementById("passedCount")
+                .textContent = passed;
+
+            document.getElementById("issueCount")
+                .textContent = issues;
+
+            document.getElementById("highCount")
+                .textContent = high;
+
+            document.getElementById("mediumCount")
+                .textContent = medium;
+
+            document.getElementById("lowCount")
+                .textContent = low;
+
+
+            /* =================================================
+               SCORE STATUS
+            ================================================= */
+
+            let status = "Needs Improvement";
+
+            if (score >= 80) {
+
+                status = "Good";
+
+            } else if (score >= 60) {
+
+                status = "Fair";
+
+            }
+
+
+            document.getElementById("scoreStatus")
+                .textContent = status;
+
+
+            /* =================================================
+               FINDINGS
+            ================================================= */
+
+            const findingsList =
+                document.getElementById("findingsList");
+
+
+            findingsList.innerHTML = "";
+
+
+            findings.forEach(finding => {
+
+                const card =
+                    document.createElement("div");
+
+                card.className = "finding-card";
+
+
+                let statusClass = "info";
+
+
+                if (finding.status === "PASS") {
+
+                    statusClass = "pass";
+
+                } else if (
+                    finding.status === "MISSING" ||
+                    finding.status === "ERROR"
+                ) {
+
+                    statusClass = "issue";
+
+                }
+
+
+                let icon = "•";
+
+
+                if (finding.status === "PASS") {
+
+                    icon = "✓";
+
+                } else if (finding.status === "MISSING") {
+
+                    icon = "!";
+
+                } else if (finding.status === "ERROR") {
+
+                    icon = "×";
+
+                }
+
+
+                card.innerHTML = `
+
+                    <div class="finding-icon ${statusClass}">
+                        ${icon}
+                    </div>
+
+                    <div class="finding-content">
+
+                        <div class="finding-top">
+
+                            <h3>
+                                ${finding.name}
+                            </h3>
+
+                            <div class="finding-badges">
+
+                                <span class="status-badge ${statusClass}">
+                                    ${finding.status}
+                                </span>
+
+                                <span class="severity-badge">
+                                    ${finding.severity}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        <p>
+                            ${finding.description}
+                        </p>
+
+                        ${
+                            finding.recommendation
+                            ? `
+                                <div class="recommendation">
+                                    <strong>Recommendation:</strong>
+                                    ${finding.recommendation}
+                                </div>
+                            `
+                            : ""
+                        }
+
+                    </div>
+
+                `;
+
+
+                findingsList.appendChild(card);
+
+            });
+
+        }
+
+    </script>
+
+</body>
+</html>

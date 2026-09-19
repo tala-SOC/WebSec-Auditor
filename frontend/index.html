@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>WebSec Auditor</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="container nav-content">
+
+            <a href="#" class="logo">
+                <span class="logo-icon">◈</span>
+                WebSec <span>Auditor</span>
+            </a>
+
+            <nav class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#how-it-works">How It Works</a>
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="badge">
+                    <span class="status-dot"></span>
+                    Automated Web Security Auditing
+                </div>
+
+                <h1>
+                    Secure Your Website
+                    <span>Before Attackers Do.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Scan your website for common security misconfigurations
+                    and get a clear security report in seconds.
+                </p>
+
+
+                <!-- SCAN BOX -->
+
+                <div class="scan-box">
+
+                    <input
+                        type="url"
+                        id="urlInput"
+                        placeholder="https://example.com"
+                        autocomplete="off"
+                    >
+
+                    <button id="scanButton">
+                        <span>Scan Website</span>
+                        <span class="arrow">→</span>
+                    </button>
+
+                </div>
+
+                <p class="scan-note">
+                    No installation required • Fast • Simple
+                </p>
+
+            </div>
+
+
+            <!-- HERO VISUAL -->
+
+            <div class="hero-visual">
+
+                <div class="glow"></div>
+
+                <div class="security-card">
+
+                    <div class="card-header">
+
+                        <div>
+                            <span class="small-label">SECURITY AUDIT</span>
+                            <h3>Website Analysis</h3>
+                        </div>
+
+                        <div class="shield">
+                            ✓
+                        </div>
+
+                    </div>
+
+
+                    <div class="score-section">
+
+                        <div class="score-circle">
+                            <span>--</span>
+                            <small>/100</small>
+                        </div>
+
+                        <div class="score-info">
+                            <span>Security Score</span>
+                            <strong>Ready to Scan</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="check-list">
+
+                        <div class="check-item">
+                            <span class="check-icon success">✓</span>
+                            <div>
+                                <strong>HTTPS</strong>
+                                <small>Enabled</small>
+                            </div>
+                        </div>
+
+                        <div class="check-item">
+                            <span class="check-icon warning">!</span>
+                            <div>
+                                <strong>Security Headers</strong>
+                                <small>2 issues found</small>
+                            </div>
+                        </div>
+
+                        <div class="check-item">
+                            <span class="check-icon success">✓</span>
+                            <div>
+                                <strong>Cookies</strong>
+                                <small>Secure configuration</small>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= FEATURES ================= -->
+
+        <section class="features section" id="features">
+
+            <div class="section-heading">
+
+                <span class="section-label">WHAT WE CHECK</span>
+
+                <h2>
+                    Know Your Website's
+                    <span>Security Posture.</span>
+                </h2>
+
+                <p>
+                    WebSec Auditor checks common web security configurations
+                    and highlights issues that need attention.
+                </p>
+
+            </div>
+
+
+            <div class="features-grid">
+
+                <!-- Feature 1 -->
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">🛡</div>
+
+                    <h3>Security Headers</h3>
+
+                    <p>
+                        Detect missing or misconfigured HTTP security headers
+                        that help protect your website from common attacks.
+                    </p>
+
+                    <div class="feature-tag">
+                        Headers
+                    </div>
+
+                </div>
+
+
+                <!-- Feature 2 -->
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">🍪</div>
+
+                    <h3>Cookie Security</h3>
+
+                    <p>
+                        Check cookie security attributes such as
+                        Secure and HttpOnly.
+                    </p>
+
+                    <div class="feature-tag">
+                        Cookies
+                    </div>
+
+                </div>
+
+
+                <!-- Feature 3 -->
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">↔</div>
+
+                    <h3>CORS Analysis</h3>
+
+                    <p>
+                        Analyze Cross-Origin Resource Sharing policies
+                        and identify potentially unsafe configurations.
+                    </p>
+
+                    <div class="feature-tag">
+                        CORS
+                    </div>
+
+                </div>
+
+
+                <!-- Feature 4 -->
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">⚠</div>
+
+                    <h3>Information Leakage</h3>
+
+                    <p>
+                        Detect exposed server and technology information
+                        that could reveal unnecessary details.
+                    </p>
+
+                    <div class="feature-tag">
+                        Information
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= HOW IT WORKS ================= -->
+
+        <section class="how-section section" id="how-it-works">
+
+            <div class="section-heading">
+
+                <span class="section-label">HOW IT WORKS</span>
+
+                <h2>
+                    Security Auditing,
+                    <span>Made Simple.</span>
+                </h2>
+
+            </div>
+
+
+            <div class="steps">
+
+                <div class="step">
+
+                    <div class="step-number">01</div>
+
+                    <div class="step-content">
+                        <h3>Enter Your URL</h3>
+
+                        <p>
+                            Enter the website you want to audit.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="step-line"></div>
+
+
+                <div class="step">
+
+                    <div class="step-number">02</div>
+
+                    <div class="step-content">
+                        <h3>Run the Audit</h3>
+
+                        <p>
+                            WebSec Auditor analyzes the website's
+                            security configuration.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="step-line"></div>
+
+
+                <div class="step">
+
+                    <div class="step-number">03</div>
+
+                    <div class="step-content">
+                        <h3>Get Your Report</h3>
+
+                        <p>
+                            Review security findings and recommended fixes.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= CTA ================= -->
+
+        <section class="cta">
+
+            <div class="cta-content">
+
+                <span class="section-label">READY TO SCAN?</span>
+
+                <h2>
+                    Check Your Website's
+                    <span>Security.</span>
+                </h2>
+
+                <p>
+                    Run a quick automated security audit and discover
+                    potential configuration issues.
+                </p>
+
+                <button class="cta-button" id="ctaButton">
+                    Start Security Audit →
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="container footer-content">
+
+            <div class="footer-logo">
+                WebSec Auditor
+            </div>
+
+            <p>
+                Automated Web Security Auditing
+            </p>
+
+            <span>
+                © 2026 WebSec Auditor
+            </span>
+
+        </div>
+
+    </footer>
+
+
+    <script src="/static/app.js"></script>
+
+</body>
+</html>
