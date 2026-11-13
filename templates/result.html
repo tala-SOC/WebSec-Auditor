@@ -1,0 +1,245 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#071A1C">
+
+    <title>Scan Results | WebSec Auditor</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+    <!-- Background -->
+    <canvas id="bg-canvas"></canvas>
+    <div id="chips"></div>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="container nav-content">
+            <a href="/" class="logo">
+                <span class="logo-icon">◈</span>
+                WebSec <span>Auditor</span>
+            </a>
+
+            <nav class="nav-links">
+                <a href="/">New Scan</a>
+                <a href="#findings">Findings</a>
+                <a href="#report">Report</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="results-page">
+
+        <section class="results-container">
+
+            <!-- Header -->
+            <div class="results-header reveal">
+                <span class="section-label">
+                    <span class="status-dot"></span>
+                    SECURITY AUDIT REPORT
+                </span>
+
+                <h1>
+                    Website <span>Security Results.</span>
+                </h1>
+
+                <p id="scannedUrl">Loading scan information...</p>
+
+                <div class="scan-meta">
+                    <span class="live-indicator"></span>
+                    <span>Automated Security Analysis</span>
+                    <span class="meta-divider">•</span>
+                    <span id="scanDate">Scan completed</span>
+                </div>
+            </div>
+
+            <!-- Summary -->
+            <section class="results-summary reveal">
+
+                <div class="result-score-card">
+
+                    <div
+                        class="result-score-circle"
+                        id="scoreCircle"
+                        style="--score: 0deg"
+                    >
+                        <div class="score-inner">
+                            <span id="securityScore">--</span>
+                            <small>/100</small>
+                        </div>
+                    </div>
+
+                    <div class="score-details">
+
+                        <span class="result-label">SECURITY SCORE</span>
+
+                        <h2 id="scoreStatus">Analyzing...</h2>
+
+                        <p id="scoreDescription">
+                            Your website security assessment.
+                        </p>
+
+                        <div class="score-progress">
+                            <div id="scoreProgressBar"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="result-stats">
+
+                    <div class="stat">
+                        <span id="passedCount">0</span>
+                        <small>Passed</small>
+                        <i class="stat-line passed-line"></i>
+                    </div>
+
+                    <div class="stat">
+                        <span id="issueCount">0</span>
+                        <small>Issues</small>
+                        <i class="stat-line issue-line"></i>
+                    </div>
+
+                    <div class="stat">
+                        <span id="highCount">0</span>
+                        <small>High</small>
+                        <i class="stat-line high-line"></i>
+                    </div>
+
+                    <div class="stat">
+                        <span id="mediumCount">0</span>
+                        <small>Medium</small>
+                        <i class="stat-line medium-line"></i>
+                    </div>
+
+                    <div class="stat">
+                        <span id="lowCount">0</span>
+                        <small>Low</small>
+                        <i class="stat-line low-line"></i>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- Findings -->
+            <section class="findings-section" id="findings">
+
+                <div class="findings-heading reveal">
+
+                    <div>
+                        <span class="section-label">DETAILED ANALYSIS</span>
+                        <h2>Security Checks</h2>
+                        <p class="findings-subtitle">
+                            Review the security configuration of your website.
+                        </p>
+                    </div>
+
+                    <span class="findings-total" id="findingsTotal">
+                        0 CHECKS
+                    </span>
+
+                </div>
+
+                <!-- Filters -->
+                <div class="findings-toolbar reveal">
+
+                    <div class="filter-group">
+
+                        <button class="filter-btn active" data-filter="ALL">
+                            All Checks
+                        </button>
+
+                        <button class="filter-btn" data-filter="PASS">
+                            Passed
+                        </button>
+
+                        <button class="filter-btn" data-filter="ISSUE">
+                            Issues
+                        </button>
+
+                    </div>
+
+                    <div class="findings-search">
+                        <span>⌕</span>
+                        <input
+                            type="search"
+                            id="findingSearch"
+                            placeholder="Search security checks..."
+                        >
+                    </div>
+
+                </div>
+
+                <!-- Findings list -->
+                <div id="findingsList" class="findings-list">
+
+                    <div class="loading-state">
+                        <div class="loading-spinner"></div>
+                        <p>Loading security findings...</p>
+                    </div>
+
+                </div>
+
+                <div id="emptyState" class="empty-state" hidden>
+                    <span>⌕</span>
+                    <h3>No matching findings</h3>
+                    <p>Try changing your filter or search keyword.</p>
+                </div>
+
+            </section>
+
+            <!-- Report Actions -->
+            <section class="report-actions reveal" id="report">
+
+                <div class="report-action-content">
+
+                    <span class="section-label">YOUR SECURITY REPORT</span>
+
+                    <h2>Stay One Step <span>Ahead.</span></h2>
+
+                    <p>
+                        Review your findings, apply the recommended security
+                        improvements, and scan your website again.
+                    </p>
+
+                </div>
+
+                <div class="report-buttons">
+
+                    <button class="cta-button" id="printReport">
+                        ↓ Print Report
+                    </button>
+
+                    <button class="secondary-button" id="newScan">
+                        ← New Scan
+                    </button>
+
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-logo">WebSec Auditor</div>
+            <p>Automated Web Security Auditing</p>
+            <span>© 2026 WebSec Auditor</span>
+        </div>
+    </footer>
+
+    <script src="/static/app.js"></script>
+    <script src="/static/result.js"></script>
+
+</body>
+</html>
